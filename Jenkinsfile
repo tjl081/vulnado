@@ -18,6 +18,17 @@ pipeline {
                 sh '/var/jenkins_home/apache-maven-3.9.8/bin/mvn --batch-mode -V -U -e checkstyle:checkstyle pmd:pmd pmd:cpd findbugs:findbugs'
             }
         }
+        stage('Code Quality Check via SonarQube') {
+                steps {
+                    script {
+                            def scannerHome = tool 'SonarQube';
+                            withSonarQubeEnv('SonarQube') {
+                            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP -
+                            Dsonar.sources=."
+                        }
+                    }
+                }
+            }
     }
 
     post {
