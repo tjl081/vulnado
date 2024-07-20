@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                git branch:'master', url: 'https://github.com/OWASP/vulnado.git'
+                git branch:'master', url: 'https://github.com/tjl081/vulnado.git'   // checkout your own repo 
             }
         }
         
